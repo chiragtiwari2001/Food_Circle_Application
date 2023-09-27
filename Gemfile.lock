@@ -224,6 +224,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rolify (6.0.1)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     selenium-webdriver (4.13.1)
@@ -287,6 +288,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.8)
   rails-controller-testing
+  rolify (~> 6.0.1)
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
