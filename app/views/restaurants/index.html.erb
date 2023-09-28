@@ -1,0 +1,10 @@
+<div>
+  <% @outlets.each do |outlet| %>
+    <ul>
+      <%= outlet.restaurant_name %>
+      <% if is_admin? %>
+        | <%= link_to "edit", edit_restaurant_path(outlet) %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

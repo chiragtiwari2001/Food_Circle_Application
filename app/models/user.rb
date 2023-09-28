@@ -13,8 +13,12 @@ class User < ApplicationRecord
   validates :address, presence: true
 
   private
-
-    def assign_default_role
-      self.add_role(:member) if self.roles.blank?
-    end
+  
+  def assign_default_role
+    self.add_role(:member) if self.roles.blank?
+  end
+  
+  def set_admin(user)
+    user.add_role :admin
+  end
 end
