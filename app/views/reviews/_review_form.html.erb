@@ -1,0 +1,10 @@
+<div class="container row">
+  <div class="col-md-4">
+    <%= form_with model: [@outlet, @outlet.reviews.build] do |f|%>
+      <%= f.label :content %>
+      <%= f.text_area :content, class: "form-control" %>
+
+      <%= f.submit "Add review", class: "btn btn-primary"%>
+    <% end %>
+  </div>
+</div>

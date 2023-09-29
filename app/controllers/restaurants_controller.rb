@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :is_logged_in?
+  before_action :authenticate_user!
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index

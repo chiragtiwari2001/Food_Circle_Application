@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:index, :show]
-  resources :restaurants
+  resources :restaurants do
+    resources :reviews, only: [:create, :destroy]
+  end  
   
   root 'home_pages#home'
   

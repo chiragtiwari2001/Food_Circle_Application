@@ -1,0 +1,6 @@
+<p>
+  <%= review.content %>
+  <%= review.user.email %>
+  <%= link_to "delete", [review.restaurant, review], data: {turbo_method: :delete, turbo_confirm: "sure?"}%>
+<p>
+<hr />

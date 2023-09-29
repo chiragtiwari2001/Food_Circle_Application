@@ -2,6 +2,7 @@
   <% @outlets.each do |outlet| %>
     <ul>
       <%= outlet.restaurant_name %>
+      | <%= link_to "Show", restaurant_path(outlet)%>
       <% if is_admin? %>
         | <%= link_to "edit", edit_restaurant_path(outlet) %>
       <% end %>
