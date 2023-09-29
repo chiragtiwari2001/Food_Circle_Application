@@ -1,7 +1,17 @@
-<div class="center jumbotron">
-  <h1>Welcome to Food Vault!</h1>
-  <h2>
-    This is the home page for <a href="#">Food Vault</a> web application.
-  </h2>
-  <%= button_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary", method: :get %>
-</div>
+<% if user_signed_in? %>
+  <span class="all-category">
+    <%= render 'category_page', category: @categories %>
+  </span>
+
+  <span class="all-outlets">
+    <%= render 'outlets_page', outlet: @outlets %>
+  </span>
+<% else %>
+  <div class="center jumbotron">
+    <h1>Welcome to Food Vault!</h1>
+    <h2>
+      This is the home page for <a href="#">Food Vault</a> web application.
+    </h2>
+    <%= button_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary", method: :get %>
+  </div>
+<% end %>

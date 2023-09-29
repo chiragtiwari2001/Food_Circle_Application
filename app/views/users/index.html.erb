@@ -1,9 +1,9 @@
 <div class="row container ">
-  <div class="col">
-    <% @users.each do |u|%>
+  <% @users.each do |u|%>
+    <div class="col">
       <ul>
         <%= u.username %> | <%= u.email %> 
       </ul>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

@@ -1,0 +1,19 @@
+<div class="row">
+  <p style="float: left">
+    Categories:
+  </p>
+  <div class="col">
+    <div class="card-group ">
+      <div class="d-flex flex-row flex-nowrap overflow-auto">
+        <% category.each do |type| %>
+          <div class="card" style="min-width: 200px">
+            <img src="..." class="card-img-top" alt="chirag">
+            <div class="card-body">
+              <h5 class="card-title"><%= type.category_name %></h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,14 @@
-<div>
+<h1>All Restaurants</h1>
+<div class="row">
   <% @outlets.each do |outlet| %>
-    <ul>
-      <%= outlet.restaurant_name %>
-      | <%= link_to "Show", restaurant_path(outlet)%>
-      <% if is_admin? %>
-        | <%= link_to "edit", edit_restaurant_path(outlet) %>
-      <% end %>
-    </ul>
+    <div class="row">
+      <ul>
+        <%= outlet.restaurant_name %>
+        | <%= link_to "Show", restaurant_path(outlet)%>
+        <% if is_admin? %>
+          | <%= link_to "edit", edit_restaurant_path(outlet) %>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 </div>

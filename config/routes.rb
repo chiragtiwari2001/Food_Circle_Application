@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:index, :show]
+  resources :categories, only: [:show, :new, :create, :destroy]
   resources :restaurants do
     resources :reviews, only: [:create, :destroy]
   end  

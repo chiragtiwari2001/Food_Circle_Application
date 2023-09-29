@@ -1,6 +1,8 @@
 class Restaurant < ApplicationRecord
   has_many :reviews
-  
+  has_many :restaurant_categories
+  has_many :categories, through: :restaurant_categories
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :restaurant_name, presence: true
