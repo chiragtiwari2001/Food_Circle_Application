@@ -28,7 +28,16 @@
 
       <div>
         <%= f.label :status %><br>
-        <%= f.select :status, ['Open', 'Closed'], selected: 'Open'%>
+        <%= f.select :status, ['Open', 'Closed'], selected: 'Open' %>
+      </div>
+
+      <div>
+        <%= f.label :category_ids, "Select Categories" %>
+        <% Category.all.each do |category| %>
+            <%= check_box_tag "restaurant[category_ids][]", category.id %>
+            <%= label_tag "restaurant_category_ids_#{category.id}", 
+            category.category_name %>
+        <% end %>
       </div>
 
       <%= f.submit "save", class: "btn btn-primary mt-3" %>

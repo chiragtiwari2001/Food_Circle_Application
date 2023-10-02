@@ -1,14 +1,23 @@
 <h1>All Restaurants</h1>
 <div class="row">
   <% @outlets.each do |outlet| %>
-    <div class="row">
-      <ul>
-        <%= outlet.restaurant_name %>
-        | <%= link_to "Show", restaurant_path(outlet)%>
-        <% if is_admin? %>
-          | <%= link_to "edit", edit_restaurant_path(outlet) %>
-        <% end %>
-      </ul>
+    <div class="col-md-4">
+      <div class="card-group">
+        <div class="card">
+          <div class="card-header">
+            <%= outlet.restaurant_name %>
+          </div>
+          <div class="card-body">
+            <%= link_to "Show", restaurant_path(outlet), class: "btn btn-primary"%>
+            <% if is_admin? %>
+            <%= link_to "edit", edit_restaurant_path(outlet), class: "btn btn-primary" %>
+            <%= link_to "Delete", restaurant_path(outlet), 
+            class: "btn btn-primary", data: {turbo_method: :delete,
+                                            turbo_confirm: "sure?"} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

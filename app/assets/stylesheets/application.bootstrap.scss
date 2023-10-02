@@ -83,11 +83,18 @@ p {
 
 /* header */
 
+.navbar {
+  .nav-link {
+    font-weight: 600;
+    color: $darker-gray;
+  }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: $white;
+  color: $darker-gray;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 0;

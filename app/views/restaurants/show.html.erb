@@ -1,17 +1,23 @@
-<h1><%= @outlet.restaurant_name %></h1>
-<p>
-  <ul>
-    <%= @outlet.restaurant_details %>
-  </ul>
-  <ul>
-    <%= @outlet.restaurant_contact %>
-  </ul>
-  <ul>
-    <%= @outlet.restaurant_address %>
-  </ul>
-  <ul>
-    <%= @outlet.restaurant_email %>
-  </ul>
-</p>
-<%= render @outlet.reviews %>
-<%= render 'reviews/review_form' %>
+<div class="row">
+  <h1><%= @outlet.restaurant_name %></h1>
+  <div class="col">
+    <p>
+    <%= @outlet.restaurant_details %><br />
+    <%= @outlet.restaurant_address %><br />
+    <%= @outlet.status %><br />
+    </p>
+    <hr />
+    <%= link_to "Order Food", restaurant_order_path(@outlet), class: "btn btn-primary mb-3"%>
+    <% if is_admin? %>
+      <div>
+        <%= link_to "Edit Details", edit_restaurant_path, class:"btn btn-primary mb-3"%>
+        <%= button_to "Delete Restaurant", restaurant_path(@outlet), 
+        class:"btn btn-primary mb-3", data: {turbo_method: :delete, 
+                                        turbo_confirm: "are you sure?"} %>
+      </div>
+    <% end %>
+    <hr />
+    <%= render @outlet.reviews %>
+  </div>
+  <%= render 'reviews/review_form' %>
+</div>

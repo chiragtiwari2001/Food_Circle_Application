@@ -6,6 +6,10 @@ class RestaurantsController < ApplicationController
     @outlets = Restaurant.all
   end
 
+  def order
+    @outlet = Restaurant.find(params[:restaurant_id])
+  end
+
   def show
     find_restaurant
   end
@@ -47,7 +51,7 @@ class RestaurantsController < ApplicationController
   private
 
     def restaurant_params
-      params.require(:restaurant).permit(:restaurant_name, :restaurant_email, :restaurant_details, :restaurant_address, :restaurant_contact, :status)
+      params.require(:restaurant).permit(:restaurant_name, :restaurant_email, :restaurant_details, :restaurant_address, :restaurant_contact, :status, category_ids: [])
     end
 
     def find_restaurant
