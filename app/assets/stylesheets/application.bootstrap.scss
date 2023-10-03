@@ -101,3 +101,17 @@ p {
   font-weight: bold;
   text-decoration: none;
 }
+
+/* Order food page */
+
+.order-food {
+  border-right: 1px solid $darker-gray;
+}
+
+.add-to-cart {
+  background-color:dodgerblue;
+}
+
+.remove-from-cart {
+  background-color: red;
+}

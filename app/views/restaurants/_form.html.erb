@@ -1,3 +1,4 @@
+<%= link_to "Back", :back, class: "btn btn-outline-dark"%>
 <div class="row">
   <div class="col-md-4 mx-auto">
     <%= form_with model: outlet do |f|%>
@@ -27,17 +28,27 @@
       </div>
 
       <div>
-        <%= f.label :status %><br>
+        <%= f.label :status, class: "mb-3" %><br>
         <%= f.select :status, ['Open', 'Closed'], selected: 'Open' %>
       </div>
 
       <div>
-        <%= f.label :category_ids, "Select Categories" %>
-        <% Category.all.each do |category| %>
-            <%= check_box_tag "restaurant[category_ids][]", category.id %>
-            <%= label_tag "restaurant_category_ids_#{category.id}", 
-            category.category_name %>
+        <!-- <h2>Category</h2>
+        <%= f.fields_for :restaurant_categories do |form| %>
+          <%= render partial: "restaurant_category_fields", 
+          locals: { f: form } %>
         <% end %>
+        <%= link_to_add_fields 'Add Category', f, :restaurant_categories %>
+        <br> -->
+        <%= f.label :category_ids, 'Categories', class:"my-3" %><br>
+        <div>
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :category_name)%><br>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :food_ids, 'Foods', class: "my-3" %><br>
+        <%= f.collection_check_boxes(:food_ids, Food.all, :id, :food_name) %>
       </div>
 
       <%= f.submit "save", class: "btn btn-primary mt-3" %>

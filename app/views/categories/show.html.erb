@@ -1,2 +1,11 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="container row">
+    <h1><%= @category.category_name %></h1>
+  <div class="col-4">
+    <% @category.foods.each do |food| %>
+      <div>
+        <%= food.food_name %><br />
+        <hr />
+      </div>
+    <% end %>
+  </div>
+</div>

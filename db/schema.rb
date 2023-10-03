@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_110110) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_061243) do
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.string "food_name"
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_foods_on_category_id"
   end
 
   create_table "restaurant_categories", force: :cascade do |t|
@@ -24,6 +33,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_110110) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_restaurant_categories_on_category_id"
     t.index ["restaurant_id"], name: "index_restaurant_categories_on_restaurant_id"
+  end
+
+  create_table "restaurant_foods", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.integer "food_id", null: false
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_restaurant_foods_on_food_id"
+    t.index ["restaurant_id"], name: "index_restaurant_foods_on_restaurant_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -85,4 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_110110) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "foods", "categories"
+  add_foreign_key "restaurant_foods", "foods"
+  add_foreign_key "restaurant_foods", "restaurants"
 end

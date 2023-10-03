@@ -2,6 +2,10 @@ class Restaurant < ApplicationRecord
   has_many :reviews
   has_many :restaurant_categories
   has_many :categories, through: :restaurant_categories
+  has_many :restaurant_foods
+  has_many :foods, through: :restaurant_foods
+  
+  accepts_nested_attributes_for :restaurant_categories, reject_if: :all_blank, allow_destroy: true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

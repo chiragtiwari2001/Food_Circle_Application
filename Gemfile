@@ -34,6 +34,8 @@ gem 'devise', '~> 4.9.2'
 
 gem "rolify", "~> 6.0.1"
 
+gem 'link_to_add_fields'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

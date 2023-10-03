@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     else
       flash[:danger] = "could not create review"
       redirect_to request.referrer
-    end 
+    end
   end
 
   def destroy

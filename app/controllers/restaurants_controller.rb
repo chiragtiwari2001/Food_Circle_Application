@@ -8,6 +8,8 @@ class RestaurantsController < ApplicationController
 
   def order
     @outlet = Restaurant.find(params[:restaurant_id])
+    @food_by_category = @outlet.foods.includes(:category)
+                                .group_by {|food| food.category}
   end
 
   def show
@@ -51,7 +53,7 @@ class RestaurantsController < ApplicationController
   private
 
     def restaurant_params
-      params.require(:restaurant).permit(:restaurant_name, :restaurant_email, :restaurant_details, :restaurant_address, :restaurant_contact, :status, category_ids: [])
+      params.require(:restaurant).permit(:restaurant_name, :restaurant_email, :restaurant_details, :restaurant_address, :restaurant_contact, :status, category_ids: [], food_ids: [])
     end
 
     def find_restaurant
@@ -60,7 +62,7 @@ class RestaurantsController < ApplicationController
 
     def admin_user
       unless current_user.has_role? :admin
-        flash[:danger]="you dont have access to this action" 
+        flash[:danger]="you dont have access to this action"
         redirect_to restaurants_path
       end
     end
