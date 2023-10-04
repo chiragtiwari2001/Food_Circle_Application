@@ -11,4 +11,17 @@ module ApplicationHelper
   def is_admin?
     current_user.has_role? :admin
   end
+
+  def set_cart
+    if current_user.cart.present?
+      user_cart = current_user.cart
+    else
+      user_cart = Cart.create(user: current_user)
+    end
+  end
+
+  def cart_item_exist?(food)
+    cart_item = set_cart.cart_items.find_by(food: food)
+    cart_item.present?
+  end
 end

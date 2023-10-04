@@ -10,10 +10,19 @@ Rails.application.routes.draw do
     get '/order', to: 'restaurants#order'
   end
 
+  resources :carts, only: [] do
+    collection do
+      post 'add_cart'
+      delete 'remove_from_cart'
+    end
+  end
+
   resources :categories, only: [:show, :new, :create, :destroy] do
     resources :foods, only: [:create]
   end
-  
+
+  resources :foods, only: [:show]
+
   root 'home_pages#home'
   
   get '/help', to: 'home_pages#help'

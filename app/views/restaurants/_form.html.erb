@@ -33,17 +33,8 @@
       </div>
 
       <div>
-        <!-- <h2>Category</h2>
-        <%= f.fields_for :restaurant_categories do |form| %>
-          <%= render partial: "restaurant_category_fields", 
-          locals: { f: form } %>
-        <% end %>
-        <%= link_to_add_fields 'Add Category', f, :restaurant_categories %>
-        <br> -->
         <%= f.label :category_ids, 'Categories', class:"my-3" %><br>
-        <div>
         <%= f.collection_check_boxes(:category_ids, Category.all, :id, :category_name)%><br>
-        </div>
       </div>
 
       <div>

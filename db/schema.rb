@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_061243) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_04_064640) do
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cart_id", null: false
+    t.integer "food_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantity"
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["food_id"], name: "index_cart_items_on_food_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
@@ -104,6 +121,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_061243) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "foods"
+  add_foreign_key "carts", "users"
   add_foreign_key "foods", "categories"
   add_foreign_key "restaurant_foods", "foods"
   add_foreign_key "restaurant_foods", "restaurants"

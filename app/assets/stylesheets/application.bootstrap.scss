@@ -115,3 +115,14 @@ p {
 .remove-from-cart {
   background-color: red;
 }
+
+.dark {
+  background-color: #222;
+}
+
+/* Table for cart */
+
+table, th, td {
+  border: 1px solid;
+  padding: 5px;
+}

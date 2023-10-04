@@ -3,7 +3,6 @@ class ReviewsController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def create
-    debugger
     @review = current_user.reviews.build(reviews_params)
     if @review.save
       flash[:success] = "review created"

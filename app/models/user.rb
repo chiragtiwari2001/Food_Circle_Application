@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable 
 
   has_many :reviews
+  has_one :cart
 
   validates :username, presence: true, length: {maximum: 15}
   validates :email, length: {maximum: 255}, format: {with: email_regexp}
