@@ -13,7 +13,14 @@ Rails.application.routes.draw do
   resources :carts, only: [] do
     collection do
       post 'add_cart'
+      patch 'cart_update'
       delete 'remove_from_cart'
+    end
+  end
+
+  resources :orders, only: [:index, :show] do
+    collection do
+      post 'create_order'
     end
   end
 

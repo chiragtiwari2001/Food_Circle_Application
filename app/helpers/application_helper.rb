@@ -16,12 +16,16 @@ module ApplicationHelper
     if current_user.cart.present?
       user_cart = current_user.cart
     else
-      user_cart = Cart.create(user: current_user)
+      user_cart = Cart.create(restaurant_id: params[:restaurant_id], user: current_user)
     end
   end
 
   def cart_item_exist?(food)
     cart_item = set_cart.cart_items.find_by(food: food)
     cart_item.present?
+  end
+
+  def update_cart
+    set_cart.cart_items.update(quantity: quantity)
   end
 end

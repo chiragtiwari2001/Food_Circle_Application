@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_04_064640) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_05_132148) do
   create_table "cart_items", force: :cascade do |t|
     t.integer "cart_id", null: false
     t.integer "food_id", null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_064640) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "restaurant_id"
+    t.index ["restaurant_id"], name: "index_carts_on_restaurant_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -41,6 +43,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_064640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_foods_on_category_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "food_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_order_items_on_food_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "total_amount"
+    t.integer "order_status"
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "restaurant_categories", force: :cascade do |t|
@@ -123,8 +146,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_064640) do
 
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "foods"
+  add_foreign_key "carts", "restaurants"
   add_foreign_key "carts", "users"
   add_foreign_key "foods", "categories"
+  add_foreign_key "order_items", "foods"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "restaurants"
+  add_foreign_key "orders", "users"
   add_foreign_key "restaurant_foods", "foods"
   add_foreign_key "restaurant_foods", "restaurants"
 end

@@ -4,6 +4,7 @@ class Restaurant < ApplicationRecord
   has_many :categories, through: :restaurant_categories
   has_many :restaurant_foods
   has_many :foods, through: :restaurant_foods
+  has_many :orders
   
   accepts_nested_attributes_for :restaurant_categories, reject_if: :all_blank, allow_destroy: true
 

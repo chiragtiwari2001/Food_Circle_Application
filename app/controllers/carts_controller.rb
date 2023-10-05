@@ -11,4 +11,11 @@ class CartsController < ApplicationController
     cart_item.destroy
     redirect_to request.referrer
   end
+
+  def cart_update
+    cart_item = set_cart.cart_items
+                        .find_by(food_id: params[:cart_item][:food_id])
+    cart_item.update(quantity: params[:cart_item][:quantity])
+    redirect_to request.referrer
+  end
 end
