@@ -7,17 +7,32 @@
     <%= @outlet.status %><br />
     </p>
     <hr />
-    <%= link_to "Order Food", restaurant_order_path(@outlet), class: "btn btn-primary mb-3"%>
-    <% if is_admin? %>
-      <div>
-        <%= link_to "Edit Details", edit_restaurant_path, class:"btn btn-primary mb-3"%>
-        <%= button_to "Delete Restaurant", restaurant_path(@outlet), 
-        class:"btn btn-primary mb-3", data: {turbo_method: :delete, 
+    <ul class="nav">
+      <li class="nav-item me-3">
+        <%= link_to "Order Food", restaurant_order_path(@outlet), class: "btn btn-primary mb-3"%>
+      </li>
+      <% if is_admin? %>
+        <li class="nav-item me-3">
+          <%= link_to "Edit Details", edit_restaurant_path, class:"btn btn-primary mb-3"%>
+        </li>
+        <li class="nav-item me-3">
+          <%= button_to "Delete Restaurant", restaurant_path(@outlet), 
+          class:"btn btn-primary mb-3", data: {turbo_method: :delete, 
                                         turbo_confirm: "are you sure?"} %>
-      </div>
-    <% end %>
+        </li>
+      <% end %>
+    </ul>
     <hr />
-    <%= render @outlet.reviews %>
   </div>
-  <%= render 'reviews/review_form' %>
+</div>
+<div class="row">
+  <div class="col-md-6 order-food">
+    <h2>Reviews</h2>
+    <%= render @outlet.reviews %>
+    <%= render 'reviews/review_form' %>
+  </div>
+  <div class="col-md-6">
+    <h2>Menu</h2>
+    <%= render @outlet.categories%>
+  </div>
 </div>

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="accordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h3> <%= category.category_name%> </h3>
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>
+              <% category.foods.each do |food| %>
+                <li style="padding-left:20px; list-style-type: none">
+                  <%= food.food_name %> | <%= food.price %> <br />
+                  <hr />
+                </li>
+              <% end %>
+            </p>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

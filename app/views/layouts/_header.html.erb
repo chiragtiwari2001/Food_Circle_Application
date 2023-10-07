@@ -33,6 +33,10 @@
                 <li>
                   <%= link_to "All Users", users_path, class: "dropdown-item"%>
                 </li>
+                <li>
+                  <%= link_to "All Orders", all_orders_path, 
+                  class: "dropdown-item"%>
+                </li>
               <% end %>
               <li>
                 <%= button_to "Log out", destroy_user_session_path, class: "dropdown-item", method: :delete %>

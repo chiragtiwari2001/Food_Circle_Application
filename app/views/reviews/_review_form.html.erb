@@ -1,8 +1,8 @@
-<div class="container row">
-  <div class="col-md-4">
+<div class="row">
+  <div class="col-md-6">
     <%= form_with model: [@outlet, @outlet.reviews.build] do |f|%>
       <%= f.label :content %>
-      <%= f.text_area :content, class: "form-control" %>
+      <%= f.text_area :content, class: "form-control mb-3" %>
 
       <%= f.submit "Add review", class: "btn btn-primary"%>
     <% end %>

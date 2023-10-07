@@ -12,6 +12,13 @@ module ApplicationHelper
     current_user.has_role? :admin
   end
 
+  def set_admin
+    outlet = Restaurant.find_by(params[:id])
+    if current_user.email == outlet.restaurant_email
+      current_user.add_role :admin
+    end
+  end
+
   def set_cart
     if current_user.cart.present?
       user_cart = current_user.cart
@@ -28,4 +35,15 @@ module ApplicationHelper
   def update_cart
     set_cart.cart_items.update(quantity: quantity)
   end
-end
+
+  def correct_admin_for_restaurant
+    if is_admin?
+      outlet = Restaurant.find(params[:id])
+      debugger
+      unless current_user.email == outlet.restaurant_email
+        flash[:danger] = "you dont have access to this restaurant"
+        redirect_to restaurants_path
+      end
+    end
+  end
+end 

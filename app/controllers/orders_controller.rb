@@ -5,6 +5,10 @@ class OrdersController < ApplicationController
     @orders = current_user.orders
   end
 
+  def all_orders
+    @orders = Order.all
+  end
+
   def show
     @order = Order.find(params[:id])
   end
@@ -24,5 +28,17 @@ class OrdersController < ApplicationController
 
     current_user.cart.cart_items.destroy_all
     redirect_to request.referrer
+  end
+
+  def order_status
+    order = Order.find_by(id: params[:order][:id])
+    order.update(order_status: params[:order][:status])
+
+    if order.accepted?
+      RestaurantMailer.order_confirmation(order.restaurant, order).deliver_now
+      UserMailer.order_confirmation(current_user, order).deliver_now
+    else
+      UserMailer.order_cancel(current_user).deliver_now
+    end
   end
 end

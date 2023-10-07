@@ -10,6 +10,7 @@
         </a>
         <div class="card-footer">
           <%= order.created_at.strftime("%b %d %Y - %I:%M%p") %>
+          <p style="float:right">Status: <%= order.order_status %></p>
         </div>
       </div>
     <% end %>
