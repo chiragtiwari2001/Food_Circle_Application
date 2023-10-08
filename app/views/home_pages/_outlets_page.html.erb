@@ -1,0 +1,21 @@
+<div class="row">
+  <p style="float: left">
+    Restaurants:
+  </p>
+  <div class="col">
+    <div class="card-group ">
+      <div class="d-flex flex-row flex-nowrap overflow-auto">
+        <% outlet.each do |outlet| %>
+          <div class="card me-3" style="min-width: 200px">
+            <a href=<%=restaurant_path(outlet)%>>
+              <%= image_tag outlet.restaurant_image, size: "200x200" %>
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><%= outlet.restaurant_name %></h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,13 +21,26 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+
+    if @category.update(category_params)
+      flash[:success] = "image added to category"
+      redirect_to request.referrer
+    end
+  end
+
   def destroy
   end
 
   private
 
     def category_params
-      params.require(:category).permit(:category_name)
+      params.require(:category).permit(:category_name, :category_image)
     end
 
     def admin_user

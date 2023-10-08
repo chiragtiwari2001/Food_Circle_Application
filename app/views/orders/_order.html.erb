@@ -4,14 +4,16 @@
       Buyer Name: <%= order.user.username %><br>
       Restaurant Name: <%= order.restaurant.restaurant_name %>
     </p>
-    <p> Ordered Items </p>
-    <% order.order_items.each do |order_item| %>
-      <div>
-        <%= order_item.food.food_name %> | <%= order_item.food.price %> | 
-        <%= order_item.quantity %>
-      </div>
+    <% unless order.restaurant.id == params[:restaurant_id] %>
+      <p> Ordered Items </p>
+      <% order.order_items.each do |order_item| %>
+        <div>
+          <%= order_item.food.food_name %> | <%= order_item.food.price %> | 
+          <%= order_item.quantity %>
+        </div>
+      <% end %>
+      <%= order.total_amount %>
     <% end %>
-    <%= order.total_amount %>
     <hr />
   </div>
 </div>

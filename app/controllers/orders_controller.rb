@@ -37,8 +37,10 @@ class OrdersController < ApplicationController
     if order.accepted?
       RestaurantMailer.order_confirmation(order.restaurant, order).deliver_now
       UserMailer.order_confirmation(current_user, order).deliver_now
+      redirect_to all_orders_path
     else
       UserMailer.order_cancel(current_user).deliver_now
+      redirect_to all_orders_path
     end
   end
 end

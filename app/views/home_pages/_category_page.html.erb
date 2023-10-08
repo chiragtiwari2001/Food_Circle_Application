@@ -6,8 +6,10 @@
     <div class="card-group ">
       <div class="d-flex flex-row flex-nowrap overflow-auto">
         <% category.each do |type| %>
-          <div class="card" style="min-width: 200px">
-            <img src="..." class="card-img-top" alt="chirag">
+          <div class="card me-3" style="min-width: 200px">
+            <a href=<%= category_path(type)%>>
+              <%= image_tag type.category_image, size: "200x200" %>
+            </a>
             <div class="card-body">
               <h5 class="card-title"><%= type.category_name %></h5>
             </div>

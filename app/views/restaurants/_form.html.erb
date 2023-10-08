@@ -28,6 +28,11 @@
       </div>
 
       <div>
+        <%= f.label :restaurant_image %><br>
+        <%= f.file_field :restaurant_image, class: "form-control mb-3 " %>
+      </div>
+
+      <div>
         <%= f.label :status, class: "mb-3" %><br>
         <%= f.select :status, ['Open', 'Closed'], selected: 'Open' %>
       </div>

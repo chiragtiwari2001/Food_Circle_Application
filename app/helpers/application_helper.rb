@@ -39,7 +39,7 @@ module ApplicationHelper
   def correct_admin_for_restaurant
     if is_admin?
       outlet = Restaurant.find(params[:id])
-      debugger
+
       unless current_user.email == outlet.restaurant_email
         flash[:danger] = "you dont have access to this restaurant"
         redirect_to restaurants_path

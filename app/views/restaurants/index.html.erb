@@ -1,15 +1,17 @@
 <h1>All Restaurants</h1>
+<%= button_to "Add New Restaurant", new_restaurant_path, 
+class: "btn btn-primary", style: "float:right", method: :get %>
 <div class="row">
   <% @outlets.each do |outlet| %>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="card-group">
         <div class="card mb-3">
           <div class="card-header">
             <%= outlet.restaurant_name %>
           </div>
-          <div class="card-body">
-            <%= link_to "Show", restaurant_path(outlet), class: "btn btn-primary"%>
-          </div>
+          <a href=<%= restaurant_path(outlet)%> class="card-body">
+            <%= image_tag outlet.restaurant_image, size: "225x200"%>
+          </a>
         </div>
       </div>
     </div>

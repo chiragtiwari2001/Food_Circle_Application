@@ -1,15 +1,15 @@
 class FoodsController < ApplicationController
-  def show
-    @food = Food.find(params[:id])
+  before_action :authenticate_user!
+
+  def new
+    @food = Food.new
   end
 
   def create
-    @category = Category.find(params[:category_id])
-    @food = @category.foods.create(food_params)
-    
+    @food = Food.create(food_params)
     if @food.save
-      flash[:suuccess] = "food added to category"
-      redirect_to @category
+      flash[:success] = "food added to category"
+      redirect_to request.referrer
     else
       render 'categories/new', status: :see_other
     end
@@ -18,6 +18,6 @@ class FoodsController < ApplicationController
   private
 
     def food_params
-      params.require(:food).permit(:food_name, :price)
+      params.require(:food).permit(:food_name, :price, :category_id)
     end
 end

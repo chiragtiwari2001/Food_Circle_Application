@@ -2,24 +2,26 @@
 <div class="row">
   <div class="col-md-5">
     <% @orders.each do |order| %>
-      <div class="card text-bg-secondary mb-3">
-        <a href=<%= order_path(order)%> class="card-header"
-        style="text-decoration:none">
-          Restaurant: <%= order.restaurant.restaurant_name %>
-          <p style="float:right">Rs <%= order.total_amount %></p><br />
-          Username: <%= order.user.username %>
-        </a>
-        <div class="card-footer">
-          <%= order.created_at.strftime("%b %d %Y - %I:%M%p") %>
-          
-          <%= form_for(order, url: order_status_orders_path) do |f| %>
-            <%= f.hidden_field :id, value: order.id %>
-            <%= f.select :status, [:pending, :accepted, :rejected],
-            selected: order.order_status || :pending %>
-            <%= f.submit %>
-          <% end %>
+      <% if order.order_status == "pending" %>
+        <div class="card text-bg-secondary mb-3">
+          <a href=<%= order_path(order)%> class="card-header"
+          style="text-decoration:none">
+            Restaurant: <%= order.restaurant.restaurant_name %>
+            <p style="float:right">Rs <%= order.total_amount %></p><br />
+            Username: <%= order.user.username %>
+          </a>
+          <div class="card-footer">
+            <%= order.created_at.strftime("%b %d %Y - %I:%M%p") %>
+            
+            <%= form_for(order, url: order_status_orders_path) do |f| %>
+              <%= f.hidden_field :id, value: order.id %>
+              <%= f.select :status, [:pending, :accepted, :rejected],
+              selected: order.order_status || :pending %>
+              <%= f.submit %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

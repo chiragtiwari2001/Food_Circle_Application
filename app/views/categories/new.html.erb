@@ -1,9 +1,14 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<h1>Add Categories</h1>
+<div class="row">
+  <div class="col-md-5 mx-auto">
+    <%= form_with model: @category do |f|%>
+      <%= f.label :category_name %>
+      <%= f.text_field :category_name, class: "form-control mb-3" %>
 
-<%= form_with model: @category do |f|%>
-  <%= f.label :category_name %>
-  <%= f.text_field :category_name %>
+      <%= f.label :category_image %>
+      <%= f.file_field :category_image, class: "form-control mb-3" %>
 
-  <%= f.submit %>
-<% end %>
+      <%= f.submit class: "btn btn-primary"%>
+    <% end %>
+  </div>
+</div>

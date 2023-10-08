@@ -10,11 +10,13 @@ class RestaurantsController < ApplicationController
   def order
     @outlet = Restaurant.find(params[:restaurant_id])
     @food_by_category = @outlet.foods.includes(:category)
-                                .group_by {|food| food.category}
+                                     .group_by {|food| food.category}
   end
 
   def show
     find_restaurant
+    @food_by_category = @outlet.foods.includes(:category)
+                                     .group_by {|food| food.category}
   end
 
   def new
@@ -54,7 +56,7 @@ class RestaurantsController < ApplicationController
   private
 
     def restaurant_params
-      params.require(:restaurant).permit(:restaurant_name, :restaurant_email, :restaurant_details, :restaurant_address, :restaurant_contact, :status, category_ids: [], food_ids: [])
+      params.require(:restaurant).permit(:restaurant_name, :restaurant_email, :restaurant_details, :restaurant_address, :restaurant_contact, :restaurant_image, :status, category_ids: [], food_ids: [])
     end
 
     def find_restaurant

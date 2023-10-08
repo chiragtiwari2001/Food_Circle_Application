@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:index, :show]
-  
+
   resources :restaurants do
     resources :reviews, only: [:create, :destroy]
     resources :categories, only: [:new, :create, :destroy]
@@ -25,14 +25,14 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :categories, only: [:show, :new, :create, :destroy] do
-    resources :foods, only: [:create]
+  resources :categories, only: [:show,:new,:create,:edit,:update,:destroy] do
+    resources :foods, only: [:new, :create]
   end
-  
-  resources :foods, only: [:show]
-  
+
+  resources :foods, only: [:show, :new, :create]
+
   root 'home_pages#home'
-  
+
   get '/all_orders', to: 'orders#all_orders'
   get '/help', to: 'home_pages#help'
   get '/about', to: 'home_pages#about'
