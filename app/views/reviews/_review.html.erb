@@ -1,6 +1,19 @@
-<p>
-  <%= review.content %>
-  <%= review.user.email %>
-  <%= link_to "delete", [review.restaurant, review], data: {turbo_method: :delete, turbo_confirm: "sure?"}%>
-<p>
-<hr />
+<div class="row">
+  <div class="col-md-6">
+    <% unless review.nil? %>
+      <div class="card-group">
+        <div class="card  mb-3">
+          <div class="card-header">
+            <%= review.user.email %>
+          </div>
+          <div class="card-body">
+            <%= review.content %>
+            <% if review.user_id == current_user.id %>
+              <%= link_to "delete", [review.restaurant, review], data: {turbo_method: :delete, turbo_confirm: "sure?"}, class: "btn btn-primary"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

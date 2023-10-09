@@ -18,7 +18,9 @@
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
       <%= yield %>
-      <%= render 'layouts/footer'%>
+      <nav class="mt-auto">
+        <%= render 'layouts/footer'%>
+      </nav>
     </div>
   </body>
 </html>

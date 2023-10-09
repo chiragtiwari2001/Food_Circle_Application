@@ -1,0 +1,16 @@
+<h1>Add Food</h1>
+<div class="row">
+  <div class="col">
+    <%= form_for(@food, method: :post) do |f| %>
+      <%= f.label :food_name %>
+      <%= f.text_field :food_name, class:"form-control mb-3" %>
+
+      <%= f.label :price %>
+      <%= f.number_field :price, class:"form-control mb-3" %>
+
+      <%= f.hidden_field :category_id, value: params[:category_id] %>
+
+      <%= f.submit class:"btn btn-primary"%>
+    <% end %>
+  </div>
+</div>

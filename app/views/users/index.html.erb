@@ -1,9 +1,22 @@
-<div class="row container ">
-  <% @users.each do |u|%>
-    <div class="col">
-      <ul>
-        <%= u.username %> | <%= u.email %> 
-      </ul>
-    </div>
-  <% end %>
+<h1>All Users</h1>
+<div class="row">
+    <table class="mb-3">
+      <tr>
+        <th>User Avatar</th>
+        <th>Username</th>
+        <th>User Email</th>
+        <th>Admin User</th>
+      </tr>
+      <% @users.each do |u|%>
+      <tr>
+        <td><%= gravatar_for(u) %></td>
+        <td><%= u.username %></td>
+        <td><%= u.email %></td>
+        <td><%= u.roles.pluck(:name) %></td>
+      </tr>
+      <% end %>
+    </table>
+    <nav class="pagination justify-content-center">
+      <%= paginate @users%>
+    </nav>
 </div>

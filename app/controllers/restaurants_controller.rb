@@ -1,13 +1,22 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :admin_user, only: %i[new create]
+  before_action :correct_admin_for_restaurant, only: %i[edit update destroy]
 
   def index
-    @outlets = Restaurant.all
+    @outlets = Restaurant.all.page params[:page]
+  end
+
+  def order
+    @outlet = Restaurant.find(params[:restaurant_id])
+    @food_by_category = @outlet.foods.includes(:category)
+                               .group_by { |food| food.category }
   end
 
   def show
     find_restaurant
+    @food_by_category = @outlet.foods.includes(:category)
+                               .group_by { |food| food.category }
   end
 
   def new
@@ -16,7 +25,7 @@ class RestaurantsController < ApplicationController
 
   def create
     @outlet = Restaurant.create!(restaurant_params)
-    
+
     if @outlet.save
       redirect_to restaurants_path
     else
@@ -46,18 +55,19 @@ class RestaurantsController < ApplicationController
 
   private
 
-    def restaurant_params
-      params.require(:restaurant).permit(:restaurant_name, :restaurant_email, :restaurant_details, :restaurant_address, :restaurant_contact, :status)
-    end
+  def restaurant_params
+    params.require(:restaurant).permit(:restaurant_name, :restaurant_email, :restaurant_details, :restaurant_address,
+                                       :restaurant_contact, :restaurant_image, :status, category_ids: [], food_ids: [])
+  end
 
-    def find_restaurant
-      @outlet = Restaurant.find(params[:id])
-    end
+  def find_restaurant
+    @outlet = Restaurant.find(params[:id])
+  end
 
-    def admin_user
-      unless current_user.has_role? :admin
-        flash[:danger]="you dont have access to this action" 
-        redirect_to restaurants_path
-      end
-    end
+  def admin_user
+    return if current_user.has_role? :admin
+
+    flash[:danger] = 'you dont have access to this action'
+    redirect_to restaurants_path
+  end
 end

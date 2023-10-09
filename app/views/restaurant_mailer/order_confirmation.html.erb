@@ -1,0 +1,20 @@
+Hi <%= @outlet.restaurant_name%>,
+
+<p>An order has been placed</p>
+<div class="row">
+  <div class="col">
+    <%= @order.user.username %>
+    <table border="1">
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+      </tr>
+      <% @order.order_items.each do |item| %>
+        <tr>
+          <td><%= item.food.food_name %></td>
+          <td><%= item.quantity %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

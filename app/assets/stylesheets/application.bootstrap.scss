@@ -83,14 +83,46 @@ p {
 
 /* header */
 
+.navbar {
+  .nav-link {
+    font-weight: 600;
+    color: $darker-gray;
+  }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: $white;
+  color: $darker-gray;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 0;
   font-weight: bold;
   text-decoration: none;
+}
+
+/* Order food page */
+
+.order-food {
+  border-right: 1px solid $darker-gray;
+}
+
+.add-to-cart {
+  background-color:dodgerblue;
+}
+
+.remove-from-cart {
+  background-color: red;
+}
+
+.dark {
+  background-color: #222;
+}
+
+/* Table for cart */
+
+table, th, td {
+  border: 1px solid;
+  padding: 5px;
 }

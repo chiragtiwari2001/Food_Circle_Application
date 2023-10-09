@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col">
+    <% unless cart.cart_items.empty? %>
+      <p>
+        <table align="center">
+          <tr>
+            <th>Cart Items</th>
+            <th>Item Price</th>
+            <th>Item Quantity</th>
+          </tr>
+          <% cart.cart_items.each do |item| %>
+            <tr>
+              <td>
+                <%= item.food.food_name %>
+              </td>
+              <td align="center">
+                <%= item.food.price %>
+              </td>
+              <td align="center">
+                <%= form_for(item, url: cart_update_carts_path) do |f| %>
+                  <%= f.hidden_field :food_id, value: item.food.id %>
+                  <%= f.number_field :quantity, in: 1..10,
+                  onchange: 'this.form.submit();'%>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+        <hr />
+        <%= button_to "Order Food", create_order_orders_path,
+        params:{restaurant: @outlet}, class: "btn btn-primary" %>
+      </p>
+    <% else %>
+      <h2>Your Cart is empty!</h2>
+    <% end %>
+  </div>
+</div>
