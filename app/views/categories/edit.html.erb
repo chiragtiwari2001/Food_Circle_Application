@@ -2,7 +2,10 @@
 <div class="row">
   <div class="col">
     <%= form_with model: @category do |f| %>
+      <%= render"shared/error_messages", object: f.object %>
+
       <%= f.file_field :category_iamge, class: "form-control" %>
+
       <%= f.submit class: "btn btn-primary"%>
     <% end %>
   </div>

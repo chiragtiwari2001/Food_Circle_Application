@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.page params[:page]
   end
 
   def all_orders
-    @orders = Order.all
+    filter_by_month
   end
 
   def show
@@ -41,6 +41,19 @@ class OrdersController < ApplicationController
     else
       UserMailer.order_cancel(current_user).deliver_now
       redirect_to all_orders_path
+    end
+  end
+
+  private
+
+  def filter_by_month
+    if params.try(:[], :date).try(:[], :month)
+      start_date = (Date.today.year.to_s + '-' + params[:date][:month] + '-' + Date.today.day.to_s).to_datetime.beginning_of_month
+
+      end_date = start_date.end_of_month
+      @orders = Order.where('created_at BETWEEN ? AND ?', start_date, end_date)
+    else
+      @orders = Order.all
     end
   end
 end

@@ -38,6 +38,8 @@ gem 'link_to_add_fields'
 
 gem 'kaminari', '~> 1.2.2'
 
+gem 'rubocop', '~> 1.56.4'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

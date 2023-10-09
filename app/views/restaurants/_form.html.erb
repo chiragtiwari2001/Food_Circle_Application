@@ -2,6 +2,8 @@
 <div class="row">
   <div class="col-md-4 mx-auto">
     <%= form_with model: outlet do |f|%>
+      <%= render"shared/error_messages", object: f.object %>
+
       <div>
         <%= f.label :restaurant_name %><br>
         <%= f.text_field :restaurant_name, class: "form-control mb-3" %>
@@ -37,14 +39,19 @@
         <%= f.select :status, ['Open', 'Closed'], selected: 'Open' %>
       </div>
 
-      <div>
+      <div class="col-md-3">
         <%= f.label :category_ids, 'Categories', class:"my-3" %><br>
-        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :category_name)%><br>
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :category_name)%>
       </div>
 
-      <div>
-        <%= f.label :food_ids, 'Foods', class: "my-3" %><br>
-        <%= f.collection_check_boxes(:food_ids, Food.all, :id, :food_name) %>
+        <%= f.label :food_ids, 'Foods', class: 'my-3'%><br>
+      <div class="row">
+          <%= f.collection_check_boxes(:food_ids, Food.all, :id, :food_name) do |cb| %>
+            <%= cb.label(class:"check_box") do %>
+              <%= cb.check_box(class:"check_box")%>
+              <%= cb.object.food_name%><br />
+            <% end %>
+          <% end %>
       </div>
 
       <%= f.submit "save", class: "btn btn-primary mt-3" %>

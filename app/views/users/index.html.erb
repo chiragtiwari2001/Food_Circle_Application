@@ -1,6 +1,6 @@
 <h1>All Users</h1>
 <div class="row">
-    <table>
+    <table class="mb-3">
       <tr>
         <th>User Avatar</th>
         <th>Username</th>
@@ -16,4 +16,7 @@
       </tr>
       <% end %>
     </table>
+    <nav class="pagination justify-content-center">
+      <%= paginate @users%>
+    </nav>
 </div>
