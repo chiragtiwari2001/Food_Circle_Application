@@ -6,13 +6,19 @@
         <th>Username</th>
         <th>User Email</th>
         <th>Admin User</th>
+        <th>Show User</th>
+        <th>Edit User</th>
+        <th>Delete User</th>
       </tr>
       <% @users.each do |u|%>
       <tr>
         <td><%= gravatar_for(u) %></td>
         <td><%= u.username %></td>
         <td><%= u.email %></td>
-        <td><%= u.roles.pluck(:name) %></td>
+        <td><%= u.roles_name %></td>
+        <td><%= link_to "Show", user_path(u) %></td>
+        <td><%= link_to "Edit", edit_user_path(u) %></td>
+        <td><%= link_to "Delete", user_path(u), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
       </tr>
       <% end %>
     </table>

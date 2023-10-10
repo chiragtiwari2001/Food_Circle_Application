@@ -40,6 +40,10 @@ gem 'kaminari', '~> 1.2.2'
 
 gem 'rubocop', '~> 1.56.4'
 
+gem 'pundit', '~> 2.3.1'
+
+gem 'faker', '~> 3.2.1'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

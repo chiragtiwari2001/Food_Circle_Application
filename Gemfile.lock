@@ -101,6 +101,8 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    faker (3.2.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     ffi (1.16.3-x64-mingw-ucrt)
     formatador (1.1.0)
@@ -183,7 +185,7 @@ GEM
       ruby-progressbar
     msgpack (1.7.2)
     nenv (0.3.0)
-    net-imap (0.4.0)
+    net-imap (0.4.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -213,6 +215,8 @@ GEM
     public_suffix (5.0.3)
     puma (5.6.7)
       nio4r (~> 2.0)
+    pundit (2.3.1)
+      activesupport (>= 3.0.0)
     racc (1.7.1)
     rack (2.2.8)
     rack-test (2.1.0)
@@ -282,7 +286,7 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
-    selenium-webdriver (4.13.1)
+    selenium-webdriver (4.14.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -339,6 +343,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9.2)
+  faker (~> 3.2.1)
   guard
   guard-minitest
   image_processing (~> 1.2)
@@ -350,6 +355,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   puma (~> 5.0)
+  pundit (~> 2.3.1)
   rails (~> 7.0.8)
   rails-controller-testing
   rolify (~> 6.0.1)

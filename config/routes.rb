@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   devise_for :users
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    get '/profile', to: 'users#profile'
+  end
 
   resources :restaurants do
     resources :reviews, only: [:create, :destroy]
