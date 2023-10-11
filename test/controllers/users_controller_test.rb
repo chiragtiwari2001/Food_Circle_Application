@@ -1,10 +1,6 @@
 require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
-
   def setup
     @user = users(:john)
     @other_user = users(:michael)
