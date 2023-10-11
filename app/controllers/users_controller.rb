@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def index
     @users = policy_scope(User).all.page params[:page]
     authorize @users

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :restaurants do
     resources :reviews, only: [:create, :destroy]
-    resources :categories, only: [:new, :create, :destroy]
+    # resources :categories, only: [:new, :create, :destroy]
     get '/order', to: 'restaurants#order'
   end
 

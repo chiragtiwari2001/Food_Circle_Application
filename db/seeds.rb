@@ -25,3 +25,8 @@ User.create!(username: "User example",
                 confirmed_at: Time.now ).add_role :member
 
 end
+
+category = Category.create!(category_name: "North Indain")
+
+category.foods.create!(food_name: "Chole Bhature", price: 150)
+category.foods.create!(food_name: "Chole Kulche", price: 170)

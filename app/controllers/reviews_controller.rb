@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     flash[:success] = 'Review deleted'
-    redirect_to request.referrer || root_url
+    redirect_to request.referrer || root_path
   end
 
   private
@@ -29,5 +29,6 @@ class ReviewsController < ApplicationController
 
   def correct_user
     @review = current_user.reviews.find_by(id: params[:id])
+    redirect_to root_path if @review.nil?
   end
 end

@@ -1,2 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+john:
+  username: john
+  email: john@gmail.com
+  address: scheme-140
+  encrypted_password: foobar
+  roles: admin
+  confirmed_at: <%= Time.zone.now %>
+
+michael:
+  username: Michael Example
+  email: michael@example.com
+  address: scheme-64
+  encrypted_password: foobar
+  roles: member
+  confirmed_at: <%= Time.zone.now %>

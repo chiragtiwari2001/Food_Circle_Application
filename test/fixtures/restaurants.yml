@@ -1,2 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+gurukripa:
+  restaurant_name: Gurukripa
+  restaurant_email: gurukripa@gmail.com
+  restaurant_address: scheme-140
+  restaurant_contact: 1234567890
+  restaurant_details: "a place to eat"
+  status: open
+  restaurant_image: 'assets/background.webp'

@@ -7,6 +7,12 @@ $gray: #555;
 $darker-gray: #222;
 $white: #fff;
 
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
 /* global */
 
 body {
