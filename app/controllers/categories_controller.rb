@@ -1,18 +1,22 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_user, only: %i[new create edit update destroy]
 
   def show
     @category = Category.find(params[:id])
     @outlets = @category.restaurants
+    authorize @category
   end
 
   def new
     @category = Category.new
+    authorize @category
   end
 
   def create
-    @category = Category.new(category_params)
+    debugger
+    @category = Category.create(category_params)
+    authorize @category
+
     if @category.save
       flash[:success] = 'new category added'
       redirect_to @category
@@ -23,10 +27,12 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+    authorize @category
   end
 
   def update
     @category = Category.find(params[:id])
+    authorize @category
 
     return unless @category.update(category_params)
 
@@ -36,6 +42,8 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id])
+    authorize @category
+
     @category.destroy
     flash[:success] = "Category Deleted"
   end
@@ -44,12 +52,5 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:category_name, :category_image)
-  end
-
-  def admin_user
-    return if current_user.has_role? :admin
-
-    flash[:danger] = 'you dont have access to this action'
-    redirect_to root_path
   end
 end

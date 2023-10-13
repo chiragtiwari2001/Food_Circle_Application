@@ -3,10 +3,13 @@ class FoodsController < ApplicationController
 
   def new
     @food = Food.new
+    authorize @food
   end
 
   def create
     @food = Food.create(food_params)
+    authorize @food
+
     if @food.save
       flash[:success] = 'food added to category'
       redirect_to request.referrer

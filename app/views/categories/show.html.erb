@@ -1,15 +1,21 @@
-<div class="container row">
+<div class="row mx-auto">
   <h1><%= @category.category_name %></h1>
-  <%= button_to "Add Food", new_category_food_path(@category), class: "btn btn-primary", method: :get %>
-  <div class="col mx-auto">
-    <center>
-      <%= image_tag(@category.category_image, size: "200x200", 
-      alt:"Category Image") %>
-    </center>
+  
+  <%= button_to "Add Food", new_category_food_path(@category), class: "btn btn-primary", method: :get  if is_admin? %>
+
+  <%= image_tag(@category.category_image, alt:"Category Image", 
+  class: "food-image mx-auto mb-5") %>
+
+</div>
+<div class="row">  
+  <div class="col-md-3">
     <% @category.foods.each do |food| %>
-      <div>
-        <%= food.food_name %><br />
-        <hr />
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="card-body">
+          <p class="card-text">
+            <%= food.food_name %>
+          </p>
+        </div>    
       </div>
     <% end %>
   </div>

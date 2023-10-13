@@ -93,5 +93,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'minitest-rails'
+  gem 'database_cleaner'
 
 end

@@ -4,30 +4,34 @@ john:
   username: john
   email: john@gmail.com
   address: scheme-140
-  encrypted_password: foobar
-  roles: admin
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  roles: 
+    - admin
   confirmed_at: <%= Time.zone.now %>
 
 michael:
-  username: Michael Example
+  username: Michael_example
   email: michael@example.com
   address: scheme-64
-  encrypted_password: foobar
-  roles: member
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  roles: 
+    - member
   confirmed_at: <%= Time.zone.now %>
 
 gurukripa:
   username: gurukripa
   email: gurukripa@gmail.com
   address: scheme-140
-  encrypted_password: foobar
-  roles: admin
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  roles: 
+    - admin
   confirmed_at: <%= Time.zone.now %>
 
 k3:
   username: k3
   email: k3@gmail.com
   address: scheme-64
-  encrypted_password: foobar
-  roles: admin
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  roles: 
+    - admin
   confirmed_at: <%= Time.zone.now %>
