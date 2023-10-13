@@ -8,3 +8,12 @@ gurukripa:
   restaurant_details: "a place to eat"
   status: open
   restaurant_image: 'assets/background.webp'
+
+shreemaya:
+  restaurant_name: Shreemaya
+  restaurant_email: shreemaya@gmail.com
+  restaurant_address: scheme-54
+  restaurant_contact: 1234567890
+  restaurant_details: "a place to eat"
+  status: open
+  restaurant_image: 'assets/background.webp'

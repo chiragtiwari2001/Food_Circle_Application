@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_user, only: %i[new create destroy]
+  before_action :admin_user, only: %i[new create edit update destroy]
 
   def show
     @category = Category.find(params[:id])
@@ -30,11 +30,15 @@ class CategoriesController < ApplicationController
 
     return unless @category.update(category_params)
 
-    flash[:success] = 'image added to category'
+    flash[:success] = 'Updated category'
     redirect_to request.referrer
   end
 
-  def destroy; end
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    flash[:success] = "Category Deleted"
+  end
 
   private
 
@@ -46,6 +50,6 @@ class CategoriesController < ApplicationController
     return if current_user.has_role? :admin
 
     flash[:danger] = 'you dont have access to this action'
-    redirect_to restaurants_path
+    redirect_to root_path
   end
 end

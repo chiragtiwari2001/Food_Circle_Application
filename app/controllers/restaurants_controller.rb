@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_user, only: %i[new create]
   before_action :correct_admin_for_restaurant, only: %i[edit update destroy]
+  before_action :admin_user, only: %i[new create edit update destroy]
 
   def index
     @outlets = Restaurant.all.page params[:page]
@@ -27,6 +27,7 @@ class RestaurantsController < ApplicationController
     @outlet = Restaurant.create!(restaurant_params)
 
     if @outlet.save
+      flash[:success] = "New Restaurant Added"
       redirect_to restaurants_path
     else
       render 'new', status: :see_other
@@ -41,6 +42,7 @@ class RestaurantsController < ApplicationController
     find_restaurant
 
     if @outlet.update(restaurant_params)
+      flash[:success] = "Restaurant details updated"
       redirect_to @outlet
     else
       render 'edit', status: :see_other

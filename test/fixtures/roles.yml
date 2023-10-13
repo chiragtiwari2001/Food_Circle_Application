@@ -6,7 +6,7 @@
 #
 
 admin:
-  users: john
+  users: [john, gurukripa, k3]
   name: admin
 
 member:
