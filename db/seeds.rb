@@ -6,27 +6,33 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create!(username: "User example",
-              email: "user@example.com",
-              password: "foobar",
-              address: "example-140-A",
-              confirmed_at: Time.now ).add_role :admin
+admin_user = User.new(
+  username: 'Admin User',
+  email: 'admin@example.com',
+  password: 'admin_password',
+  password_confirmation: 'admin_password',
+  address: 'Admin Address'
+)
 
-10.time do |n|
-  name = Faker::Name.name
-  email = "example-#{n+1}@user.in"
-  password = "password"
-  address = "example-#{n+1}-A"
+admin_user.skip_confirmation!
+admin_user.add_role :admin
+admin_user.save
 
-  User.create!(username: name,
-                email: email,
-                address: address,
-                password: password,
-                confirmed_at: Time.now ).add_role :member
-
+5.times do |n|
+  user = User.new(
+    username: "User#{n+1}",
+    email: "user#{n+1}@example.com",
+    password: 'password',
+    password_confirmation: 'password',
+    address: "Address#{n+1}"
+  )
+  user.skip_confirmation!
+  user.save
 end
 
 category = Category.create!(category_name: "North Indain")
+category_image_path = Rails.root.join("tmp\test.jpg")
+category.category_image.attach()
 
 category.foods.create!(food_name: "Chole Bhature", price: 150)
 category.foods.create!(food_name: "Chole Kulche", price: 170)

@@ -6,4 +6,5 @@ class Category < ApplicationRecord
   has_one_attached :category_image
 
   validates :category_name, presence: true
+  validates :category_image, presence: true
 end

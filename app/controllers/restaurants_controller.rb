@@ -24,7 +24,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @outlet = Restaurant.create!(restaurant_params)
+    @outlet = Restaurant.create(restaurant_params)
 
     if @outlet.save
       flash[:success] = "New Restaurant Added"

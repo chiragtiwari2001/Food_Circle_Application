@@ -1,2 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+burger:
+  food_name: "pasta"
+  price: 120
+  category: italian

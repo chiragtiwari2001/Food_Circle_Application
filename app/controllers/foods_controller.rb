@@ -2,25 +2,25 @@ class FoodsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @food = Food.new
-    authorize @food
+    @category = Category.find_by(id: params[:category_id])
+    authorize @food = Food.new
   end
 
   def create
-    @food = Food.create(food_params)
-    authorize @food
+    @category = Category.find_by(id: params[:category_id])
+    authorize @food = @category.foods.create(food_params)
 
     if @food.save
       flash[:success] = 'food added to category'
-      redirect_to request.referrer
+      redirect_to @category
     else
-      render 'categories/new', status: :see_other
+      render 'new', status: :see_other
     end
   end
 
   private
 
   def food_params
-    params.require(:food).permit(:food_name, :price, :category_id)
+    params.require(:food).permit(:food_name, :price)
   end
 end

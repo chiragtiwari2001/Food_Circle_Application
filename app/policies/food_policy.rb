@@ -11,6 +11,6 @@ class FoodPolicy < ApplicationPolicy
   end
 
   def create?
-    @user.has_role? :admin
+    is_admin?
   end
 end

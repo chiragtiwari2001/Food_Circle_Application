@@ -2,20 +2,16 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @category = Category.find(params[:id])
+    authorize @category = Category.find(params[:id])
     @outlets = @category.restaurants
-    authorize @category
   end
 
   def new
-    @category = Category.new
-    authorize @category
+    authorize @category = Category.new
   end
 
   def create
-    debugger
-    @category = Category.create(category_params)
-    authorize @category
+    authorize @category = Category.new(category_params)
 
     if @category.save
       flash[:success] = 'new category added'
@@ -26,13 +22,12 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
-    authorize @category
+    authorize category = Category.find(params[:id])
+
   end
 
   def update
-    @category = Category.find(params[:id])
-    authorize @category
+    authorize @category = Category.find(params[:id])
 
     return unless @category.update(category_params)
 
@@ -41,8 +36,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
-    authorize @category
+    authorize @category = Category.find(params[:id])
 
     @category.destroy
     flash[:success] = "Category Deleted"

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :foods, only: [:new, :create]
   end
 
-  resources :foods, only: [:show, :new, :create]
+  resources :foods, only: [:show]
 
   root 'home_pages#home'
 
