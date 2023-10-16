@@ -30,9 +30,28 @@ admin_user.save
   user.save
 end
 
-category = Category.create!(category_name: "North Indain")
-category_image_path = Rails.root.join("tmp\test.jpg")
-category.category_image.attach()
+outlet = Restaurant.create(
+                    restaurant_name: "Eaxmple Outlet",
+                    restaurant_details: "a place to eat",
+                    restaurant_address: "example-A",
+                    restaurant_email: "admin@example.com",
+                    restaurant_contact: 1234567890
+                    )
 
-category.foods.create!(food_name: "Chole Bhature", price: 150)
-category.foods.create!(food_name: "Chole Kulche", price: 170)
+outlet_image_path = Rails.root.join("tmp", "test.jpg")
+outlet.restaurant_image.attach(io: File.open(outlet_image_path), filename: 'test.jpg')
+
+category = Category.create!(category_name: "Fast Food")
+
+category_image_path = Rails.root.join("tmp", "test.jpg")
+category.category_image.attach(io: File.open(category_image_path), filename: 'test.jpg')
+
+food1 = category.foods.create!(food_name: "Burger", price: 150)
+food2 = category.foods.create!(food_name: "French Fries", price: 170)
+
+
+
+RestaurantCategory.create(restaurant_id: outlet, category_id: category)
+
+RestaurantFood.create(restaurant_id: outlet, food_id: food1)
+RestaurantFood.create(restaurant_id: outlet, food_id: food2)

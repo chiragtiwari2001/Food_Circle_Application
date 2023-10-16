@@ -36,13 +36,13 @@ class UsersController < ApplicationController
     authorize @user
 
     @user.destroy
-    flash[:success] = "User Deleted!"
+    flash[:success] = 'User Deleted!'
     redirect_to users_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit({role_ids: []})
+    params.require(:user).permit({ role_ids: [] })
   end
 end

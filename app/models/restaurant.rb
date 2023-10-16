@@ -1,12 +1,12 @@
 class Restaurant < ApplicationRecord
   paginates_per 4
 
-  has_many :reviews
-  has_many :restaurant_categories
+  has_many :reviews, dependent: :destroy
+  has_many :restaurant_categories, dependent: :destroy
   has_many :categories, through: :restaurant_categories
-  has_many :restaurant_foods
+  has_many :restaurant_foods, dependent: :destroy
   has_many :foods, through: :restaurant_foods
-  has_many :orders
+  has_many :orders, dependent: :destroy
 
   has_one_attached :restaurant_image
 

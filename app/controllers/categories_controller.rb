@@ -22,8 +22,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    authorize category = Category.find(params[:id])
-
+    authorize @category = Category.find(params[:id])
   end
 
   def update
@@ -39,7 +38,7 @@ class CategoriesController < ApplicationController
     authorize @category = Category.find(params[:id])
 
     @category.destroy
-    flash[:success] = "Category Deleted"
+    flash[:success] = 'Category Deleted'
   end
 
   private
