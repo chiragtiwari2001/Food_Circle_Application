@@ -1,2 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+cart1:
+  user: john
+  restaurant: gurukripa
+
+cart2:
+  user: michael
+  restaurant: shreemaya

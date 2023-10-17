@@ -1,1 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+order_item1:
+  order: order1
+  food: coke
+  quantity: 1
+
+order_item2:
+  order: order1
+  food: burger
+  quantity: 1
+
+order_item3:
+  order: order2
+  food: coke
+  quantity: 2

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: %i[show edit update destroy]
+
   def index
     @users = policy_scope(User).all.page params[:page]
     authorize @users
@@ -9,20 +11,11 @@ class UsersController < ApplicationController
     @user = User.find_by(id: current_user.id)
   end
 
-  def show
-    @user = User.find(params[:id])
-    authorize @user
-  end
+  def show;  end
 
-  def edit
-    @user = User.find(params[:id])
-    authorize @user
-  end
+  def edit;  end
 
   def update
-    @user = User.find(params[:id])
-    authorize @user
-
     if @user.update(user_params)
       flash[:success] = "Role updated for #{@user.username}"
       redirect_to users_path
@@ -32,9 +25,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    authorize @user
-
     @user.destroy
     flash[:success] = 'User Deleted!'
     redirect_to users_path
@@ -44,5 +34,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit({ role_ids: [] })
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+    authorize @user
   end
 end

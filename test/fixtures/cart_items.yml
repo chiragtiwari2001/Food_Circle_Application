@@ -1,1 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cart_item1:
+  cart: cart1
+  food: coke
+  quantity: 1
+
+cart_item2:
+  cart: cart1
+  food: burger
+  quantity: 1
+
+cart_item3:
+  cart: cart2
+  food: coke
+  quantity: 2

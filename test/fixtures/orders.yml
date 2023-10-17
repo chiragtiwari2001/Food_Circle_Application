@@ -1,1 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+order1:
+  user: john
+  restaurant: gurukripa
+  total_amount: 200
+  order_status: "accepted"
+
+order2:
+  user: michael
+  restaurant: shreemaya
+  total_amount: 160
+  order_status: "rejected"

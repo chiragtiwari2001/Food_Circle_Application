@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_restaurant, only: %i[show edit update destroy]
 
   def index
     @outlets = Restaurant.all.page params[:page]
@@ -9,15 +10,11 @@ class RestaurantsController < ApplicationController
   def order
     @outlet = Restaurant.find(params[:restaurant_id])
     authorize @outlet
-
-    @food_by_category = @outlet.foods.includes(:category)
-                               .group_by { |food| food.category }
+    food_by_category
   end
 
   def show
-    find_restaurant
-    @food_by_category = @outlet.foods.includes(:category)
-                               .group_by { |food| food.category }
+    food_by_category
   end
 
   def new
@@ -35,13 +32,9 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def edit
-    find_restaurant
-  end
+  def edit;  end
 
   def update
-    find_restaurant
-
     if @outlet.update(restaurant_params)
       flash[:success] = 'Restaurant details updated'
       redirect_to @outlet
@@ -51,7 +44,6 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    find_restaurant
     @outlet.destroy
     redirect_to restaurants_path
   end
@@ -63,8 +55,13 @@ class RestaurantsController < ApplicationController
                                        :restaurant_contact, :restaurant_image, :status, category_ids: [], food_ids: [])
   end
 
-  def find_restaurant
+  def set_restaurant
     @outlet = Restaurant.find(params[:id])
     authorize @outlet
+  end
+
+  def food_by_category
+    @food_by_category = @outlet.foods.includes(:category)
+                               .group_by { |food| food.category }
   end
 end

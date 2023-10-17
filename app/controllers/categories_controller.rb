@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_category, only: %i[show edit update destroy]
 
   def show
-    authorize @category = Category.find(params[:id])
     @outlets = @category.restaurants
   end
 
@@ -21,13 +21,9 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-    authorize @category = Category.find(params[:id])
-  end
+  def edit;  end
 
   def update
-    authorize @category = Category.find(params[:id])
-
     return unless @category.update(category_params)
 
     flash[:success] = 'Updated category'
@@ -35,8 +31,6 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    authorize @category = Category.find(params[:id])
-
     @category.destroy
     flash[:success] = 'Category Deleted'
   end
@@ -45,5 +39,9 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:category_name, :category_image)
+  end
+
+  def set_category
+    authorize @category = Category.find(params[:id])
   end
 end

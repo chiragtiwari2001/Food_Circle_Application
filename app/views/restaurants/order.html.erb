@@ -18,10 +18,10 @@
                   <li style="padding-left:20px; list-style-type: none">
                     <%= food.food_name %> | <%= food.price %> <br />
                     <% if cart_item_exist?(food) %>
-                      <%= button_to "Remove From Cart",  remove_from_cart_carts_path,  params: {food: food},
+                      <%= button_to "Remove From Cart",  remove_from_cart_carts_path,  params: {food_id: food},
                       class: "btn btn-danger", method: :delete %>
                     <% else %>
-                      <%= button_to "Add To Cart", add_cart_carts_path, params: {food: food}, class: "btn btn-primary" %>
+                      <%= button_to "Add To Cart", add_to_cart_carts_path, params: {food_id: food}, class: "btn btn-primary" %>
                     <% end %>
                     <hr />
                   </li>

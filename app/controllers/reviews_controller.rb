@@ -6,11 +6,10 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build(reviews_params)
     if @review.save
       flash[:success] = 'review created'
-      redirect_to request.referrer
     else
       flash[:danger] = 'could not create review'
-      redirect_to request.referrer
     end
+    redirect_to request.referrer
   end
 
   def destroy

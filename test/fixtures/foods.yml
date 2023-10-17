@@ -1,6 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 burger:
-  food_name: "pasta"
+  food_name: "Burger"
   price: 120
   category: italian
+
+coke:
+  food_name: "Coke"
+  price: 80
+  category: beverages

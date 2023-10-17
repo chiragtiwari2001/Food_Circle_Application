@@ -23,8 +23,4 @@ class User < ApplicationRecord
   def assign_default_role
     add_role(:member) if roles.blank?
   end
-
-  def set_admin(user)
-    user.add_role :admin
-  end
 end

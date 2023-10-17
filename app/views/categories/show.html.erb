@@ -1,7 +1,7 @@
 <div class="row mx-auto">
   <h1><%= @category.category_name %></h1>
   
-  <%= button_to "Add Food", new_category_food_path(@category), class: "btn btn-primary", method: :get  if is_admin? %>
+  <%= button_to "Add Food", new_category_food_path(@category), class: "btn btn-primary", method: :get  if admin? %>
 
   <%= image_tag(@category.category_image, alt:"Category Image", 
   class: "food-image mx-auto mb-5") %>
