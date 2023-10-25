@@ -11,10 +11,6 @@
           <li>
             <%= link_to "All Outlets", restaurants_path, class: "nav-link" %>
           </li>
-          <li>
-            <%= link_to "Add Categories", new_category_path,
-            class: "nav-link" if admin? %>
-          </li>
           <li class="nav-item">
             <%= link_to "Home", root_path, class:"nav-link"%>
           </li>
@@ -35,11 +31,11 @@
               <li><hr class="dropdown-divider"></li>
               <% if admin? %>
                 <li>
-                  <%= link_to "All Users", users_path, class: "dropdown-item"%>
-                </li>
-                <li>
                   <%= link_to "All Orders", all_orders_path, 
                   class: "dropdown-item"%>
+                </li>
+                <li>
+                  <%= link_to "Admin Panel", admin_root_path, class:"dropdown-item"%>
                 </li>
               <% end %>
               <li>

@@ -21,4 +21,16 @@ class ApplicationController < ActionController::Base
     flash[:danger] = 'You are not authorized to perform this action.'
     redirect_back(fallback_location: root_path)
   end
+
+  def authenticate_admin_user!
+    if user_signed_in?
+      unless admin?
+        flash[:danger] = "you are not authorized to access this page!"
+        redirect_to root_path
+      end
+    else
+      flash[:warning] = "You must sign in first!"
+      redirect_to new_user_session_path
+    end
+  end
 end

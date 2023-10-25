@@ -38,11 +38,13 @@ gem 'link_to_add_fields'
 
 gem 'kaminari', '~> 1.2.2'
 
-gem 'rubocop', '~> 1.56.4'
+# gem 'rubocop', '~> 1.56.4'
 
 gem 'pundit', '~> 2.3.1'
 
 gem 'faker', '~> 3.2.1'
+
+gem 'activeadmin', '~> 3.0.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -60,7 +62,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
@@ -94,6 +96,4 @@ group :test do
   gem 'guard'
   gem 'guard-minitest'
   gem 'minitest-rails'
-  gem 'database_cleaner'
-
 end
